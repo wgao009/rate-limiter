@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace RateLimiter.Tests
 {
@@ -6,9 +7,21 @@ namespace RateLimiter.Tests
     public class RateLimiterTest
     {
         [Test]
-        public void Example()
+		[TestCase(15,false)]
+        [TestCase(5,true)]
+		public void Overload_Fail(int calls, bool request)
         {
-            Assert.IsTrue(true);
+			var rateLimiter = new RateLimiter();
+			var user = Guid.NewGuid();
+			var resource = rateLimiter.KnownResource;
+			var result = true;
+
+			for (int i = 0; i < calls; i++)
+			{
+				result = result && rateLimiter.GetRequest(user, resource);
+			}
+
+            Assert.That(result == request);
         }
     }
 }
