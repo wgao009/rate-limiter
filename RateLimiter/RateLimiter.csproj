@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,7 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ConfigUtility.cs" />
+    <Compile Include="Model\ClientIdentity.cs" />
+    <Compile Include="Model\ClientRequest.cs" />
+    <Compile Include="Model\ConfigSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RateLimiterProcessor.cs" />
+    <Compile Include="Rules\EndPointRule.cs" />
+    <Compile Include="Rules\Extensions.cs" />
+    <Compile Include="Rules\IClientRequestRule.cs" />
+    <Compile Include="Rules\MaxRequestPerPeriodRule.cs" />
+    <Compile Include="Rules\TimespanPassedRule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
